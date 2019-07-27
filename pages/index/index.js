@@ -7,7 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+    
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,6 +18,15 @@ Page({
     })
   },
   onLoad: function () {
+
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          screenHeight: res.screenHeight
+        });
+      }
+    });
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,6 +54,23 @@ Page({
       })
     }
   },
+
+  onReady:function(){
+
+    this.animaiton = wx.createAnimation({
+      timingFunction:'linear',
+      duration:0,
+
+    })
+
+    this.animaiton.translateY(100).step({ duration: 5000 })
+
+    this.setData({
+      animationData:this.animaiton.export()
+    })
+    
+  },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
