@@ -1,13 +1,22 @@
 {
   "pages": [
+
+    
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/dm/dm",
+    "pages/logs/logs",
+    "pages/user/user",
+    "pages/set/set"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffff00",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#e6489f",
+    "navigationBarTitleText": "一天一首古诗",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "debug":true
+  
 }

@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
 	"appid": "wx88a288204975c720",
-	"projectname": "xiaogushi",
+	"projectname": "miniprogram-gushi",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

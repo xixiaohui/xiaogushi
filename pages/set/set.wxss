@@ -1,0 +1,25 @@
+/* pages/set/set.wxss */
+/* @import '../../utils/weui.wxss'; */
+@import '../index/index.wxss';
+
+.mycontentList{
+
+  
+
+  /* background: purple; */
+  margin-top: 50rpx;
+  margin-bottom: 250rpx;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+
+  font-family: HAKUYOOTI3500;
+  /* font-family:STLiti; */
+  font-size: 50rpx;
+
+}
+
+.poetry_title{
+
+  font-size: 70rpx;
+}

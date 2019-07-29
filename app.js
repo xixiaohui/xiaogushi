@@ -1,5 +1,8 @@
 //app.js
 App({
+
+
+
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -12,6 +15,8 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+
+    console.log("获取用户信息");
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -19,6 +24,7 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              console.log(res.userInfo);
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 
@@ -33,7 +39,27 @@ App({
       }
     })
   },
+
+  getUserInfo: function (cb) {
+    var that = this;
+    if (this.globalData.userInfo) {
+      typeof cb == "function" && cb(this.globalData.userInfo)
+    } else {
+      //调用登录接口
+      wx.login({
+        success: function () {
+          wx.getUserInfo({
+            success: function (res) {
+              that.globalData.userInfo = res.userInfo;
+              typeof cb == "function" && cb(that.globalData.userInfo)
+            }
+          })
+        }
+      });
+    }
+  },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    version: "1.0.6",
   }
 })

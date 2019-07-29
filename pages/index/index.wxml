@@ -1,13 +1,54 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  
+  <view class="version">
+    <text>{{ version }} </text>
+  </view>
+
+  <view class = "mycontent">
+    <view class ="animated zoomInDown poetry_title">
+      <text >{{ todayPoetry.title }}</text>
+    </view>
+ 
+    <view class="animated zoomInRight dynasty_anthor">
+      <text class="poetry_dynasty">[{{ todayPoetry.dynasty }}] </text>
+      <text class="poetry_author">{{ todayPoetry.author }}</text>
+    </view> 
+
+    <view class="poetry_text animated jello" style='writing-mode:{{ writingMode }}'>
+      <text>{{ todayPoetry.text }}</text>
+    </view> 
+  </view>
+
+  <view class="share_pengyouquan_button">
+    <button id="share_button" wx:if="{{!hasUserInfo && canIUse}}" plain='true' style="border:none;width: 30px; height: 30px" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <image class ="share_button" src="/image/pengyouquan.png" style="width: 30px; height: 30px"></image>
+    </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <button id="share_button" plain='true' style="border:none;width: 30px; height: 30px" bindtap="myShare">
+        <image class ="share_button"  src="/image/pengyouquan.png" style="width: 30px; height: 30px"></image>
+      </button>
+      <!-- <text style="font-size:10px">分享</text> -->
     </block>
   </view>
-  <view animation="{{ animationData }}" class="usermotto">
-    <text  class="user-motto">{{motto}}</text>
+  
+  <view class="my_share_button share_button">
+    
+    <button id="share_button2" plain='true' style="border:none;width: 30px; height: 30px" open-type="share" bindtap="handleTapShareButton">
+      <image class ="share_button" src="/image/share.png" style="width: 30px; height: 30px"></image>
+    </button>
+    <!-- <text style="font-size:10px">转发</text> -->
+  </view>
+  <view class="shujia_text">
+    <text>暑假第 {{ passDays }} 天</text>
+  </view>
+</view>
+<!-- <canvas canvas-id="myCanvas"></canvas> -->
+<canvas hidden="{{hidden}}"canvas-id="myCanvas" style='width:100vw;height:100vh'></canvas>
+
+
+<view class="page-body">
+  <view class="btn-area">
+    <button bindtap="navigateTo" type="primary">古诗收录列表</button>
   </view>
 </view>
