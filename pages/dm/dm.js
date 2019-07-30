@@ -5,14 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
     flyText: "我是小古诗最火弹幕！",
     flyDuration: 10000,
     textColor: "rgb(255,0,155)",
     
+    textArr:{},
+
     //弹幕数据
-    dmdata:{},
-    
-    textArr:{}
+    dmdata: {},
+    //弹幕当前索引值
+    barragecount: 0,
   },
 
   //设置弹幕
@@ -48,7 +51,9 @@ Page({
   onReady: function () {
     // this.initBarrage(this.data.flyText);
     this.initBarrageH(this.data.flyText);
+    this.startBarrageAnimation();
   },
+
 
   //初始化横向弹幕
   initBarrageH:function(flyText){
@@ -65,7 +70,9 @@ Page({
       transXWidth: transXWidth,
       textArr: textArr,
     });
+  },
 
+  startBarrageAnimation:function(){
     //开始循环执行
     this.barrageAnimationH();
 
@@ -75,6 +82,7 @@ Page({
     }.bind(this), this.data.flyDuration);
 
   },
+  
 
   //定时器，让弹幕横着飞
   barrageAnimationH: function () {
@@ -92,6 +100,19 @@ Page({
       textArr: [], //文字清空的动画效果
       animationData: this.animation.export()
     });
+
+    
+    //更改文字
+    this.setData({
+      flyText: this.data.dmdata[0].dmText[this.data.barragecount]
+    })
+
+    this.data.barragecount +=1
+    if (this.data.barragecount >= this.data.dmdata[0].dmText.length){
+      this.data.barragecount = 0;
+    }
+    console.log(this.data.flyText)
+    this.initBarrageH(this.data.flyText);
 
     //延迟0.1s执行
     setTimeout(function () {

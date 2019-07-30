@@ -4,7 +4,7 @@
   <view class="version">
     <text>{{ version }} </text>
   </view>
-
+  
   <view class = "mycontent">
     <view class ="animated zoomInDown poetry_title">
       <text >{{ todayPoetry.title }}</text>
@@ -42,6 +42,13 @@
   <view class="shujia_text">
     <text>暑假第 {{ passDays }} 天</text>
   </view>
+
+  <view class="barrage-view" catchtouchmove="true" >
+    <view animation="{{animationData}}" class="barrage-viewfly" style="color:{{textColor}};">
+      <view class='barrage-text-item' wx:for="{{textArr}}" wx:key="unique">{{item}}</view>
+    </view>
+  </view>
+
 </view>
 <!-- <canvas canvas-id="myCanvas"></canvas> -->
 <canvas hidden="{{hidden}}"canvas-id="myCanvas" style='width:100vw;height:100vh'></canvas>

@@ -1,27 +1,14 @@
 <!--pages/dm/dm.wxml-->
 
 <!--弹幕文字-->
-
 <view class="barrage-view" catchtouchmove="true" >
-  
   <view animation="{{animationData}}" class="barrage-viewfly" style="color:{{textColor}};">
-
-    <!-- <view wx:for="{{ dmdata }}" wx:key="unique"> -->
-       <view class='text-item' wx:for="{{textArr}}" wx:key="unique">{{item}}</view>
-    <!-- </view> -->
-   
+    <view class='barrage-text-item' wx:for="{{textArr}}" wx:key="unique">{{item}}</view>
   </view>
-
-  <!-- <view> 
-    <text style='color:red'>我在页面里</text>
-  </view> -->
-
 </view>
 
-
-
 <!--弹幕输入框-->
-<view class="barrage-input-block" >
+<!-- <view class="barrage-input-block" >
   <view wx:if="{{showSource}}" class="share-text" style='color:#FFF;'>加微信 <text selectable="true">qicong88</text>，发送"dm"，确认后发源码</view>
   <form bindsubmit="formSubmit" >
     <view class="barrage-input"> <input name="flyText" value="" placeholder="请设置弹幕" maxlength='20'/> </view>
@@ -30,4 +17,18 @@
       <button size="mini" type='warn' open-type='share'>分享群，获取源码</button>
     </view>
   </form>
-</view>
+</view> -->
+
+<!-- <view class="barrage_xiaogushi" catchtouchmove="true" >
+  <view  class="barrage_xiaogushi_first" wx:for="{{ dmdata }}" wx:key="unique" style="color:{{textColor}};">
+    <view class='barrage_xiaogushi_second' wx:for="{{ item }}" wx:key="unique">
+      <view animation="{{animationData}}" class ="barrage_xiaogushi_text">{{item}}</view>
+    </view>
+  </view>
+</view> -->
+
+
+
+
+
+

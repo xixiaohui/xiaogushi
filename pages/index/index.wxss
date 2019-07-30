@@ -132,3 +132,42 @@
 #share_button2{
   padding: 0;
 }
+
+/*弹幕开始*/
+.barrage-view {
+	height: 50%;
+	width: 100%;
+	position: absolute;
+  /* background-color: white; */
+  top: 0px;
+}
+.barrage-viewfly {
+	position: absolute; 
+  font-size: 30px;
+  left: 35%;
+  height: 300rpx;
+  /* width: 100%; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+}
+.barrage-text-item{
+  margin-bottom: -60rpx;
+  /* transform: rotate(90deg); */
+
+  /* margin: 20px; */
+}
+.barrage-input-block{
+  position: fixed;
+  bottom: 10px;
+}
+.barrage-input input{
+  background-color: #FFF;
+}
+.barrage-shoot{
+  margin-top: 10rpx;
+}
+.barrage-shoot button{
+  margin-right: 10rpx;
+}
+/**弹幕样式结束*/

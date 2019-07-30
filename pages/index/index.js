@@ -51,11 +51,96 @@ Page({
     //诗歌显示样式
     writingMode: "vertical-rl",
 
+    //弹幕属性
+    flyText: "我是小古诗最火弹幕！",
+    flyDuration: 10000,
+    textColor: "rgb(255,0,155)",
+    textArr: {},
+    //弹幕数据
+    dmdata: {},
+    //弹幕当前索引值
+    barragecount: 0,
+
     //版本标记
     version: "",
   },
 
+  //设置弹幕
+  setDmData: function () {
+    let data = require('../dm/dmdata.js');
+    this.setData({ dmdata: data.dataList })
+  },
   
+  //初始化横向弹幕
+  initBarrageH: function (flyText) {
+    var textArr = flyText.split("");
+    var screenWidth = this.data.screenWidth; //rpx计算调整位置
+    console.log("screenWidth = " + screenWidth)
+    //计算动画移动X值
+    var transXWidth = screenWidth * textArr.length / 5;
+
+    console.log("textArr.length= " + textArr.length + " transXWidth = " + transXWidth)
+
+    this.setData({
+      screenWidth: screenWidth,
+      transXWidth: transXWidth,
+      textArr: textArr,
+    });
+  },
+
+  startBarrageAnimation: function () {
+    //开始循环执行
+    this.barrageAnimationH();
+
+    // 定时执行
+    this.inter_id = setInterval(function () {
+      this.barrageAnimationH();
+    }.bind(this), this.data.flyDuration);
+
+  },
+
+  //定时器，让弹幕横着飞
+  barrageAnimationH: function () {
+    //开始弹幕滚动
+    if (!this.animation) {
+      this.animation = wx.createAnimation({
+        duration: 0,
+        timingFunction: 'linear'
+      });
+    }
+
+    //动画恢复到原位
+    this.animation.translateX(this.data.screenWidth).step();
+    // this.animation.translateY(0).step();
+    this.setData({
+      textArr: [], //文字清空的动画效果
+      animationData: this.animation.export()
+    });
+
+
+    //更改文字
+    this.setData({
+      flyText: this.data.dmdata[0].dmText[this.data.barragecount]
+    })
+
+    this.data.barragecount += 1
+    if (this.data.barragecount >= this.data.dmdata[0].dmText.length) {
+      this.data.barragecount = 0;
+    }
+    console.log(this.data.flyText)
+    this.initBarrageH(this.data.flyText);
+
+    //延迟0.1s执行
+    setTimeout(function () {
+      this.animation.translateX(-this.data.transXWidth).step({ duration: this.data.flyDuration });
+      this.setData({
+        textArr: this.data.flyText.split(""),
+        animationData: this.animation.export()
+      });
+    }.bind(this), 100);
+  },
+  
+
   //调整字体显示顺序（如何通过js代码控制样式）
   setWritingMode: function () {
 
@@ -349,6 +434,23 @@ Page({
     this.setData({
       version: app.globalData.version
     })
+  },
+
+  onReady: function () {
+    
+    // this.initBarrage(this.data.flyText);
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          screenHeight: res.screenHeight,
+          screenWidth: res.screenWidth
+        });
+      }
+    });
+
+    this.setDmData()
+    this.initBarrageH(this.data.flyText);
+    this.startBarrageAnimation();
   },
 
 })
