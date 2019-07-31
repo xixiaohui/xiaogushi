@@ -61,14 +61,71 @@ Page({
     //弹幕当前索引值
     barragecount: 0,
 
+    //增加字幕
+    hiddenmodalput: true,
+
     //版本标记
     version: "",
   },
 
+  //添加弹幕按钮
+  addBarrage:function(){
+    this.setData({ hiddenmodalput: !this.data.hiddenmodalput })
+  },
+
+  //取消添加字幕
+  cancelBarrageModule:function(){
+    this.setData({ hiddenmodalput: true})
+  },
+
+  //确定添加字幕
+  confirmBarrageModule:function(res){
+
+    this.setData({ hiddenmodalput: true })
+
+    // this.data.dmdata[0].dmText.push("完美~")
+    this.data.dmdata[0].dmText.push(this.data.barrageword)
+  },
+
+  //获取输入的字幕评论
+  barrageInput:function(res){
+    var barrage = res.detail.value
+    
+    this.setData({
+      barrageword: barrage
+    })
+    console.log("您输入的是" + barrage)
+  },
+
   //设置弹幕
   setDmData: function () {
-    let data = require('../dm/dmdata.js');
-    this.setData({ dmdata: data.dataList })
+    
+    var that = this
+    //获取本地缓存失败就从文件读取
+    wx.getStorage({
+      key:"dmText",
+      success:function(res){
+
+        that.setData({ dmdata: res.data })
+        console.log("获取缓存数据成功  ..." + that.data.dmdata)
+
+        that.initBarrageH(that.data.flyText);
+        that.startBarrageAnimation();
+
+      },
+      fail:function(){
+        let data = require('../dm/dmdata.js');
+        that.setData({ dmdata: data.dataList })
+        console.log("获取缓存数据失败" + that.data.dmdata)
+
+        that.initBarrageH(that.data.flyText);
+        that.startBarrageAnimation();
+      }
+    })
+    
+    // let data = require('../dm/dmdata.js');
+    // this.setData({ dmdata: data.dataList })
+    
   },
   
   //初始化横向弹幕
@@ -449,8 +506,53 @@ Page({
     });
 
     this.setDmData()
-    this.initBarrageH(this.data.flyText);
-    this.startBarrageAnimation();
+    // this.initBarrageH(this.data.flyText);
+    // this.startBarrageAnimation();
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+    // wx.getSavedFileList({
+    //   success:function(res){
+    //     console.log(res)
+    //   }
+    // }),
+    //   //写入弹幕文字到../dm/dmdata.js
+
+    // wx.getFileSystemManager().writeFile({
+    //   filePath:'../dm/dmdata.js',
+    //   data:this.data.dmdata,
+    //   encoding:'utf8',
+
+    //   success:function(){
+    //     console.log("存入字幕成功")
+    //   },
+    //   fail:function(res){
+        
+    //     console.log("onHide调用隐藏" + wx.env.USER_DATA_PATH)
+    //     console.log(res)
+    //   }
+    // })
+    
+    wx.setStorage({
+      key: 'dmText',
+      data: this.data.dmdata,
+      success:function(){
+        console.log("存入本地缓存成功")
+      }
+    })
+
+    wx.getStorage({
+      key:'dmText',
+      success:function(res){
+        console.log(res.data)
+      }
+    })
+
+
   },
 
 })

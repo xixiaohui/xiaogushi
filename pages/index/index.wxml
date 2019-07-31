@@ -49,6 +49,12 @@
     </view>
   </view>
 
+  <modal hidden="{{hiddenmodalput}}" title="请输入评论字幕" confirm-text="确定" cancel-text="取消" bindcancel="cancelBarrageModule" bindconfirm="confirmBarrageModule">
+    
+    <input type='text' bindinput="barrageInput" placeholder="请输入" focus/>
+    <!-- <input type='text' placeholder="请输入" focus/> -->
+  </modal>
+
 </view>
 <!-- <canvas canvas-id="myCanvas"></canvas> -->
 <canvas hidden="{{hidden}}"canvas-id="myCanvas" style='width:100vw;height:100vh'></canvas>
@@ -57,5 +63,7 @@
 <view class="page-body">
   <view class="btn-area">
     <button bindtap="navigateTo" type="primary">古诗收录列表</button>
+    <button bindtap="addBarrage" type="primary">添加弹幕评论</button>
   </view>
 </view>
+
