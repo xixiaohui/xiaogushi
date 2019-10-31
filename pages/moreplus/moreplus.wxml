@@ -1,0 +1,25 @@
+<import src="../index/poetry.wxml" />
+
+
+
+<swiper style="width:{{width}}px;height:{{height}}px" class="my_swiper my_font my_color" 
+current = "{{ current }}" circular
+indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" easing-function="easeInOutCubic"
+  bindtransition="posChange"
+   bindchange="currentChange">
+  <view class="content">
+    <block wx:for="{{ currentPoteries }}" wx:key="item.id" wx:for-index="idx">
+
+      <swiper-item class="swiper_item swiper_item_{{idx}}">
+        
+
+        <view>
+          {{flag}} {{ item.title }}
+        </view>
+      </swiper-item>
+    </block>
+  </view>
+</swiper>
+
+

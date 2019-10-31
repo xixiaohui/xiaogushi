@@ -1,6 +1,6 @@
 {
   "pages": [
-
+    
     "pages/index/index",
     "pages/my/my",
     "pages/mylabel/mylabel",
@@ -9,12 +9,11 @@
 
     "pages/dm/dm",
     "pages/logs/logs",
-    "pages/user/user",
     "pages/voice/voice",
     "pages/search/search",
-    
-    "pages/more/more",
-    "pages/set/set"
+    "pages/moreplus/moreplus",
+    "pages/more/more"
+
     
   ],
   

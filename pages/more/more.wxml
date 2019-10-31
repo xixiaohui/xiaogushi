@@ -1,22 +1,4 @@
 
-<!--pages/more/more.wxml-->
-
-<!-- <recycle-view batch="{{batchSetRecycleData}}" id="recycleId">
-  <view slot="before">长列表前面的内容</view>  
-
-
-  <recycle-item wx:for="{{recycleList}}" wx:key="id">
-    <view>
-        <image style='width:80px;height:80px;float:left;' src="{{item.image_url}}"></image>
-      {{item.idx+1}}. {{item.title}}
-    </view>
-  </recycle-item>
-
-  <view slot="after">
-    <mp-tabbar current="1" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange">
-    </mp-tabbar>
-  </view>
-</recycle-view> -->
 <import src="../index/poetry.wxml" />
 
 

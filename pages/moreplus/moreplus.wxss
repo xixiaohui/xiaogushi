@@ -1,4 +1,3 @@
-/* pages/more/more.wxss */
 @import '../../utils/animate.wxss';
 @import '../../utils/font.wxss';
 @import '../../utils/gushistyle.wxss';
