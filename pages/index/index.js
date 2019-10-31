@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const systemInfo = wx.getSystemInfoSync()
 
 Page({
   data: {
@@ -23,7 +23,7 @@ Page({
     sentences:[],
 
     //初始时间
-    starttime:"2019-06-30 00:00:00",
+    starttime:"2019-09-01 00:00:00",
     //已经过去几天
     passDays:0,
 
@@ -37,7 +37,7 @@ Page({
       path: 'pages/index/index'
     },
     //画布隐藏
-    hidden:true,
+    hidden:false,
 
     //屏幕宽高
     width:0,
@@ -66,6 +66,32 @@ Page({
 
     //版本标记
     version: "",
+
+    showFlagCanvas: false,
+
+    list: [
+      {
+        text: "主页",
+        iconPath: "/images/outline_home_black_36dp.png",
+        selectedIconPath: "/images/outline_home_black_36dp.png",
+      },
+      {
+        text: "搜索",
+        iconPath: "/images/search-24px.svg",
+        selectedIconPath: "/images/search-24px.svg",
+      },
+      {
+        text: "更多",
+        iconPath: "/images/outline_more_black_36dp.png",
+        selectedIconPath: "/images/outline_more_black_36dp.png",
+        badge: '1000+'
+      },
+      {
+        text: "我的",
+        iconPath: "/images/outline_face_black_36dp.png",
+        selectedIconPath: "/images/outline_face_black_36dp.png",
+        // badge: 'New'
+      }],
   },
 
   //添加弹幕按钮
@@ -123,8 +149,6 @@ Page({
       }
     })
     
-    // let data = require('../dm/dmdata.js');
-    // this.setData({ dmdata: data.dataList })
     
   },
   
@@ -146,6 +170,7 @@ Page({
   },
 
   startBarrageAnimation: function () {
+    
     //开始循环执行
     this.barrageAnimationH();
 
@@ -211,11 +236,11 @@ Page({
   
   setVwh:function(){
     this.setData({
-      width:wx.getSystemInfoSync().windowWidth
+      width:wx.getSystemInfoSync().screenWidth
     })
 
     this.setData({
-      height: wx.getSystemInfoSync().windowHeight
+      height: wx.getSystemInfoSync().screenHeight
     })
 
     console.log("vw = " + this.data.width);
@@ -349,6 +374,28 @@ Page({
 
   },
 
+  previewImage: function (event){
+
+    // var that = this;
+    // var src = that.data.discount.imgPath;//获取data-src
+    // var imgList = [that.data.discount.imgPath];//获取data-list
+    // //图片预览
+    // wx.previewImage({
+    //   current: src, // 当前显示图片的http链接
+    //   urls: imgList // 需要预览的图片http链接列表
+    // })
+
+  },
+
+  drawFlag:function(avatar){
+    var that = this
+    const ctx = wx.createCanvasContext('flagCanvas', that);
+
+    ctx.drawImage(avatar, 0, 0, 600, 600)
+    ctx.drawImage('../../image/timg.jpg', 480, 480,100,100)
+    ctx.draw();
+  },
+
 
   getAv:function(){
     var that = this
@@ -450,8 +497,21 @@ Page({
 
   },
 
+  //设置宽高
+  setScreenHeightAndWidth: function () {
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          screenHeight: res.screenHeight,
+          screenWidth: res.screenWidth
+        });
+      }
+    });
+  },
+
   onLoad: function () {
     
+    this.setScreenHeightAndWidth();
     this.setPassDays();
     this.setPoetry();
     this.setTodayPoetry(this.data.poetry_index);
@@ -460,6 +520,7 @@ Page({
     this.setVwh();
     this.setWritingMode();
     this.setAnimation();
+
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -491,52 +552,54 @@ Page({
     this.setData({
       version: app.globalData.version
     })
+
+    wx.hideTabBar({
+    })
   },
+
+  tabChange:function(e){
+
+    let index = e.detail.index;
+    
+    const HOME = 0;
+    const SEARCH = 1
+    const MORE = 2;
+    const MY = 3;
+
+    if (index == MORE){
+      wx.redirectTo({
+        url: '/pages/more/more',
+      })  
+    } else if (index == MY){
+      wx.redirectTo({
+        url: '/pages/my/my',
+      })
+    } else if (index == HOME){
+      wx.redirectTo({
+        url: '/pages/index/index',
+      })
+    } else if (index == SEARCH) {
+      wx.redirectTo({
+        url: '/pages/search/search',
+      })
+    }
+  },
+
+  
 
   onReady: function () {
     
-    // this.initBarrage(this.data.flyText);
-    wx.getSystemInfo({
-      success: res => {
-        this.setData({
-          screenHeight: res.screenHeight,
-          screenWidth: res.screenWidth
-        });
-      }
-    });
 
-    this.setDmData()
-    // this.initBarrageH(this.data.flyText);
-    // this.startBarrageAnimation();
+    
+
+    // this.setDmData()
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
-    // wx.getSavedFileList({
-    //   success:function(res){
-    //     console.log(res)
-    //   }
-    // }),
-    //   //写入弹幕文字到../dm/dmdata.js
-
-    // wx.getFileSystemManager().writeFile({
-    //   filePath:'../dm/dmdata.js',
-    //   data:this.data.dmdata,
-    //   encoding:'utf8',
-
-    //   success:function(){
-    //     console.log("存入字幕成功")
-    //   },
-    //   fail:function(res){
-        
-    //     console.log("onHide调用隐藏" + wx.env.USER_DATA_PATH)
-    //     console.log(res)
-    //   }
-    // })
-    
     wx.setStorage({
       key: 'dmText',
       data: this.data.dmdata,
@@ -553,6 +616,19 @@ Page({
     })
 
 
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    console.log("onHide 页面卸载了")
+ 
+    wx.setStorage({
+      key: 'all',
+      data: this.data.poetry,
+    })
+    
   },
 
 })

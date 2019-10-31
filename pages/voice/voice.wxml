@@ -1,0 +1,19 @@
+<import src="../../common/head.wxml" />
+<import src="voicetemplates.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title:mytitle}}"/>
+
+  <scroll-view style="height:{{height}}px" scroll-y="true" >
+    
+    <!-- <block wx:for="{{ 100 }}" wx:for-item="current"> -->
+    <block wx:for="{{ 100 }}">
+      <template is="voicetemplates" data="{{ current:current,index:index }}" />
+    </block>
+
+  </scroll-view>
+
+</view>
+
+  
+

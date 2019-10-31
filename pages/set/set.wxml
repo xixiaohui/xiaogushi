@@ -6,7 +6,7 @@
 
 
  
-<view class = "mycontentList" wx:for="{{ poetry }}">
+<view class = "mycontentList my_font" wx:for="{{ poetry }}">
 
   <view class ="">
     <text class="poetry_title">{{ item.title }}</text>

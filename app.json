@@ -1,21 +1,33 @@
 {
   "pages": [
 
-    
     "pages/index/index",
+    "pages/my/my",
+    "pages/mylabel/mylabel",
+    "pages/myfav/myfav",
+    "pages/myauthlist/myauthlist",
+
     "pages/dm/dm",
     "pages/logs/logs",
     "pages/user/user",
+    "pages/voice/voice",
+    "pages/search/search",
+    
+    "pages/more/more",
     "pages/set/set"
-
+    
   ],
+  
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#e6489f",
-    "navigationBarTitleText": "一天一首古诗",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "小古诗",
+    "navigationBarTextStyle": "white",
     "backgroundColor": "#eeeeee"
   },
+
+ 
+
   "sitemapLocation": "sitemap.json",
   "debug":true
   

@@ -1,0 +1,8 @@
+<import src="../index/poetry.wxml" />
+
+<scroll-view scroll-y style="height: {{ height }}px;">
+  <block wx:for="{{ favPoetries }}" wx:key="item.id" wx:for-index="idx">
+    <template is="my_poetry" data="{{ poetry : item,writingMode:'vertical-rl',show:false}}" />
+    
+  </block>
+</scroll-view>

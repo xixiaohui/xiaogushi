@@ -1,0 +1,10 @@
+<scroll-view scroll-y style="height: {{ height }}px;">
+
+  <mp-cells ext-class="my-cells" title="作者列表">
+    <block wx:for="{{ authorList }}" wx:key="item.id" wx:for-index="idx">
+      
+
+      <mp-cell value="{{item}}"></mp-cell>
+    </block>
+  </mp-cells>
+</scroll-view>

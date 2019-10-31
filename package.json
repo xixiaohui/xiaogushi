@@ -1,0 +1,20 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "requires": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.weixin.qq.com/wx_wx88a288204975c720/xiaogushi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "miniprogram-recycle-view": "^0.1.5",
+    "weui-miniprogram": "^0.1.12"
+  }
+}

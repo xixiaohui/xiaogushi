@@ -1,11 +1,9 @@
 /* pages/set/set.wxss */
 /* @import '../../utils/weui.wxss'; */
 @import '../index/index.wxss';
+@import '../../utils/font.wxss';
 
 .mycontentList{
-
-  
-
   /* background: purple; */
   margin-top: 50rpx;
   margin-bottom: 250rpx;
@@ -13,13 +11,14 @@
   flex-direction: column;
   display: flex;
 
-  font-family: HAKUYOOTI3500;
-  /* font-family:STLiti; */
-  font-size: 50rpx;
-
 }
 
 .poetry_title{
 
+  font-size: 70rpx;
+}
+
+.my_font{
+  font-family: Liu Jian Mao Cao;
   font-size: 70rpx;
 }

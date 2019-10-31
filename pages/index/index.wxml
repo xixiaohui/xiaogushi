@@ -1,69 +1,16 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" style="min-height:{{height}}px">
   
-  <view class="version">
+  <!-- <view class="version">
     <text>{{ version }} </text>
-  </view>
-  
-  <view class = "mycontent">
-    <view class ="animated zoomInDown poetry_title">
-      <text >{{ todayPoetry.title }}</text>
-    </view>
- 
-    <view class="animated zoomInRight dynasty_anthor">
-      <text class="poetry_dynasty">[{{ todayPoetry.dynasty }}] </text>
-      <text class="poetry_author">{{ todayPoetry.author }}</text>
-    </view> 
-
-    <view class="poetry_text animated jello" style='writing-mode:{{ writingMode }}'>
-      <text>{{ todayPoetry.text }}</text>
-    </view> 
+  </view> -->
+  <view class="content">
+    <import src="poetry.wxml" />
+    <template is="my_poetry" data="{{ poetry : todayPoetry,writingMode:'vertical-rl',show:false}}" />
   </view>
 
-  <view class="share_pengyouquan_button">
-    <button id="share_button" wx:if="{{!hasUserInfo && canIUse}}" plain='true' style="border:none;width: 30px; height: 30px" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-      <image class ="share_button" src="/image/pengyouquan.png" style="width: 30px; height: 30px"></image>
-    </button>
-    <block wx:else>
-      <button id="share_button" plain='true' style="border:none;width: 30px; height: 30px" bindtap="myShare">
-        <image class ="share_button"  src="/image/pengyouquan.png" style="width: 30px; height: 30px"></image>
-      </button>
-      <!-- <text style="font-size:10px">分享</text> -->
-    </block>
-  </view>
-  
-  <view class="my_share_button share_button">
-    
-    <button id="share_button2" plain='true' style="border:none;width: 30px; height: 30px" open-type="share" bindtap="handleTapShareButton">
-      <image class ="share_button" src="/image/share.png" style="width: 30px; height: 30px"></image>
-    </button>
-    <!-- <text style="font-size:10px">转发</text> -->
-  </view>
-  <view class="shujia_text">
-    <text>暑假第 {{ passDays }} 天</text>
-  </view>
+  <mp-tabbar ext-class="my_tab" current="0" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
 
-  <view class="barrage-view" catchtouchmove="true" >
-    <view animation="{{animationData}}" class="barrage-viewfly" style="color:{{textColor}};">
-      <view class='barrage-text-item' wx:for="{{textArr}}" wx:key="unique">{{item}}</view>
-    </view>
-  </view>
 
-  <modal hidden="{{hiddenmodalput}}" title="请输入评论字幕" confirm-text="确定" cancel-text="取消" bindcancel="cancelBarrageModule" bindconfirm="confirmBarrageModule">
-    
-    <input type='text' bindinput="barrageInput" placeholder="请输入" focus/>
-    <!-- <input type='text' placeholder="请输入" focus/> -->
-  </modal>
 
 </view>
-<!-- <canvas canvas-id="myCanvas"></canvas> -->
-<canvas hidden="{{hidden}}"canvas-id="myCanvas" style='width:100vw;height:100vh'></canvas>
-
-
-<view class="page-body">
-  <view class="btn-area">
-    <button bindtap="navigateTo" type="primary">古诗收录列表</button>
-    <button bindtap="addBarrage" type="primary">添加弹幕评论</button>
-  </view>
-</view>
-
