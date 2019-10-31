@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container" style="min-height:{{height}}px">
+  
+  <!-- <view class="version">
+    <text>{{ version }} </text>
+  </view> -->
+  <view class="content">
+    <import src="poetry.wxml" />
+    <template is="my_poetry" data="{{ poetry : todayPoetry,writingMode:'vertical-rl',show:false}}" />
+  </view>
+
+  <mp-tabbar ext-class="my_tab" current="0" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+
+
+
+</view>

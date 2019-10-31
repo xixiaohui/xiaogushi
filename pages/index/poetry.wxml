@@ -1,0 +1,22 @@
+
+<template name="my_poetry">
+
+  <view class = "mycontent my_font my_color">
+      <view class ="animated zoomInDown poetry_title">
+        <text >{{ poetry.title }}</text>
+      </view>
+  
+      <view class="animated zoomInRight dynasty_anthor">
+        <text class="poetry_dynasty">[{{ poetry.dynasty }}] </text>
+        <text class="poetry_author">{{ poetry.author }}</text>
+      </view> 
+
+      <view class="poetry_text animated jello"  id="item_{{id}}" style='writing-mode:{{ writingMode }}'>
+        <text>{{ poetry.text }}</text>
+      </view> 
+  </view>
+  <block wx:if="{{show}}">
+    <import src="favorites.wxml" />
+    <template is="favorites"  data="{{ templatelikeimgsrc:likeimgsrc, inlist:withinlist}}"/>
+  </block>
+</template>

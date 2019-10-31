@@ -1,0 +1,116 @@
+
+@import '../../utils/animate.wxss';
+@import '../../utils/font.wxss';
+@import '../../utils/gushistyle.wxss';
+
+
+
+.version{
+  font-size: 10px;
+  color: #F2F2F2;
+
+  position: fixed;
+  left: 3px;
+  top: 3px;
+
+
+}
+
+.my_share_button{
+
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  
+}
+.share_pengyouquan_button{
+
+  position: fixed;
+  bottom: 20rpx;
+  left: 20rpx;
+}
+
+.share_button{
+  background-color: #e6489f;
+  border-radius:10rpx;
+}
+
+/* .share{
+  position: absolute;
+  bottom: 100rpx;
+  width: 70%;
+  left: 15%;
+  height: 100rpx;
+  line-height: 100rpx;
+} */
+
+.imgClass{
+  width: 100vw;
+}
+
+.shujia_text{
+
+  font-size: 15px;
+  color:#F2F2F2;
+
+  position: fixed;
+  bottom: 20rpx;
+  /* left: 20rpx; */
+}
+#share_button{
+  padding: 0;
+}
+
+#share_button2{
+  padding: 0;
+}
+
+/*弹幕开始*/
+.barrage-view {
+	height: 50%;
+	width: 100%;
+	position: absolute;
+  /* background-color: white; */
+  top: 0px;
+}
+.barrage-viewfly {
+	position: absolute; 
+  font-size: 30px;
+  left: 35%;
+  height: 300rpx;
+  /* width: 100%; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+}
+.barrage-text-item{
+  margin-bottom: -60rpx;
+  /* transform: rotate(90deg); */
+
+  /* margin: 20px; */
+}
+.barrage-input-block{
+  position: fixed;
+  bottom: 10px;
+}
+.barrage-input input{
+  background-color: #FFF;
+}
+.barrage-shoot{
+  margin-top: 10rpx;
+}
+.barrage-shoot button{
+  margin-right: 10rpx;
+}
+/**弹幕样式结束*/
+
+.content{
+  /* background-color: peru; */
+  top: 25%;
+  transform: translateY(-25%);
+  position: absolute;
+}
+
+.container{
+  position: relative;
+}

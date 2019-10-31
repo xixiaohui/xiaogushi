@@ -1,0 +1,39 @@
+/* pages/more/more.wxss */
+@import '../../utils/animate.wxss';
+@import '../../utils/font.wxss';
+@import '../../utils/gushistyle.wxss';
+
+
+
+.swiper_item{
+  display: block;
+  /* background-color: peru; */
+  top:5%;
+}
+
+.voice_font{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  color: #cccccc;
+}
+
+.btn{
+  /* background-color:white; */
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  display:flex;
+  border: 0 !important;
+
+}
+
+.cache{
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
+
+
+.content{
+  background-color: peru;
+}

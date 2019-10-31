@@ -1,0 +1,9 @@
+@import '../../utils/animate.wxss';
+@import '../../utils/font.wxss';
+@import '../../utils/gushistyle.wxss';
+
+
+
+/* .searchscroll{
+  background-color: peru;
+} */

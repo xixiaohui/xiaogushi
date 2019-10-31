@@ -1,0 +1,44 @@
+<view>
+  <import src="../../common/head.wxml" />
+  <template is="head" data="{{title:mytitle}}"/>
+
+
+  <block>
+    <mp-cells ext-class="my-cells" title="">
+  
+      <mp-cell  bindtap="tapVoice">
+          <view>语音</view>
+          <image slot="icon" src ="../../images/baseline_keyboard_voice_black_36dp.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+
+      <mp-cell link hover bindtap="tapLabel">
+          <view>标签</view>
+          <image slot="icon" src ="../../images/baseline_bookmark_black_36dp.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+
+      <mp-cell link hover bindtap="tapHeart">
+          <view>点赞</view>
+          <image slot="icon" src ="../../images/baseline_favorite_black_36dp.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>  
+
+      <mp-cell link hover bindtap="tapAuthorList">
+          <view>作者列表</view>
+          <image slot="icon" src ="../../images/baseline_group_black_36dp.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+
+      <mp-cell footer="{{date}}">
+          <view>日期</view>
+          <image slot="icon" src ="../../images/baseline_access_time_black_36dp.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+
+      <mp-cell footer="{{version}}">
+          <view>版本</view>
+          <image slot="icon" src ="../../images/baseline_bubble_chart_black_36dp.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+        
+    </mp-cells>
+  </block>
+
+
+  <mp-tabbar ext-class="my_tab" current="3" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>

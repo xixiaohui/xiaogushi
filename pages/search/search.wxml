@@ -1,0 +1,20 @@
+<import src="../index/poetry.wxml" />
+
+<view class="container">
+  <import src="../../common/head.wxml" />
+  <template is="head" data="{{title:mytitle}}"/>
+
+
+  <mp-searchbar id="search" focus  placeholder="请输入作者姓名搜索" bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+
+  <scroll-view class="searchscroll" scroll-y style="height: {{ height }}px;">
+    <block wx:for="{{ searchPoetry }}" wx:key="item.id" wx:for-index="idx">
+      <template is="my_poetry" data="{{ poetry : item,writingMode:'vertical-rl',show:false}}" />
+      <view class="page-head-line-top"></view>
+    </block>
+  </scroll-view>
+
+
+
+  <mp-tabbar id="tabbar" ext-class="my_tab" current="1" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>

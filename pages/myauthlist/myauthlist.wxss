@@ -1,0 +1,7 @@
+@import '../../utils/animate.wxss';
+@import '../../utils/font.wxss';
+@import '../../utils/gushistyle.wxss';
+
+page{
+  background: purple;
+}

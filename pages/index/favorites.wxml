@@ -1,0 +1,24 @@
+<!--收藏点赞模板-->
+
+<template name="favorites">
+  <view class="favorites">
+    <view class="voice" bindtap="clickVoice">
+      <image class="my_icon" src="../../images/baseline_keyboard_voice_black_36dp.png"/>
+    </view>
+    <view class="share" bindtap="clickShare">
+      <button class="btn my_icon" open-type="share" plain="true" hover-class="none">
+        <image class="cache" src="../../images/baseline_cached_black_36dp.png"/>
+      </button>
+      
+    </view>
+    <view class="mlike" data-hi="i like this poetry." bindtap="clickLike">
+        <image wx:if="{{templatelikeimgsrc == 0}}" class="my_icon" src="../../images/baseline_favorite_border_black_36dp.png"/>
+        <image wx:else="{{templatelikeimgsrc != 0}}" class="my_icon" src="../../images/baseline_favorite_black_36dp.png"/>
+    </view>
+    <view class="list" data-hi="add to my list." bindtap="clickList">
+      <image wx:if="{{inlist == 0}}" class="my_icon" src="../../images/baseline_bookmark_border_black_36dp.png"/>
+      <image wx:else="{{inlist != 0}}" class="my_icon" src="../../images/baseline_bookmark_black_36dp.png"/>
+    </view>
+
+  </view>
+</template>
