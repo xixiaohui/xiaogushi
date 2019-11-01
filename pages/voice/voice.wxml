@@ -7,7 +7,7 @@
   <scroll-view style="height:{{height}}px" scroll-y="true" >
     
     <!-- <block wx:for="{{ 100 }}" wx:for-item="current"> -->
-    <block wx:for="{{ 100 }}">
+    <block wx:for="{{ 2 }}">
       <template is="voicetemplates" data="{{ current:current,index:index }}" />
     </block>
 

@@ -1,5 +1,6 @@
 const systemInfo = wx.getSystemInfoSync()
 
+var innerAudioContext = wx.createInnerAudioContext();
 // pages/voice/voice.js
 Page({
 
