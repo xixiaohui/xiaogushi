@@ -207,39 +207,7 @@ Page({
   },
 
   
-  //获取数据库中的所有古诗
-  setPoetry: function() {
-
-    const that = this
-    wx.showLoading({
-      title:'加载中',
-      mask:true,
-      success:()=>{
-        
-        // let data = require('../index/data.js');
-        //that.setData({ poetry: data.dataList })
-        wx.getStorage({
-          key: 'all',
-          success: function(res) {
-            that.setData({ poetry: res.data }, () => {
-              wx.hideLoading()
-
-              console.log('--------------------')
-              console.log(that.data.poetry)
-
-              that.setFavs()
-              that.setInList()
-              that.getMyStorage()
-            })
-          },
-        })
-      }
-    })
-
-    
-
-    
-  },
+  
 
   //设置古诗收藏数组
   setFavs:function(){
@@ -352,22 +320,42 @@ Page({
     })
   },
 
+  //获取数据库中的所有古诗
+  setPoetry: function () {
+
+    const that = this
+    wx.showLoading({
+      title: '正在加载古诗列表，请稍等',
+      mask: true,
+      success: () => {
+        let data = require('../index/data.js');
+        that.setData({ poetry: data.dataList }, () => {
+          wx.hideLoading()
+
+          that.setFavs()
+          that.setInList()
+          that.getMyStorage()
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (res) {
     
-    var that = this
-    wx.getStorage({
-      key: KEY[0],
-      success: function (res) {
-        that.setData({
-          current: res.data
-        })
-      },
-    })
     this.setPoetry()
-    this.getShareParameters(res)
+
+
+
+    console.log("----------onLoad-----more.js------")
+    if(JSON.stringify(res) != "{}"){
+      console.log("----------onLoad-----getShareParameters------")
+      console.log(res)
+      this.getShareParameters(res)
+    }
+    
   },
 
   //监听元素
@@ -444,6 +432,7 @@ Page({
 
   /**
    * 用户点击右上角分享
+   * 点击分享按钮分享 share
    */
   onShareAppMessage: function (res) {
 
